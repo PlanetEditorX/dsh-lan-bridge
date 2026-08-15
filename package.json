@@ -1,6 +1,6 @@
 {
   "name": "dsh-lan-bridge",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "LAN bridge for the DeepSeek Harness Web GUI: a loopback-face reverse proxy (HTTP + WebSocket) that lets phones/tablets on the trusted LAN use the FULL /api surface (settings, credentials, agent presets, native dialogs) by rewriting Host/Origin to the loopback authority. Starts and stops automatically with the dsh profile.",
   "type": "module",
   "main": "lib/index.js",

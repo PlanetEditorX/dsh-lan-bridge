@@ -84,6 +84,11 @@ node bin\lan-proxy.mjs --port 2882
 缓存住，表现为左侧工作区/会话列表为空、无法输入、选工作区后又跳回选择 —— 强制刷新（或无痕
 窗口）即可解决（前端无 Service Worker）。
 
+桥自 v0.1.1 起对 `text/html` 响应强制 `Cache-Control: no-store`（harness 本体不发任何缓存
+头，移动浏览器会启发式缓存旧 index.html，导致"手机端一直是旧页面"）。**该改动需重启 Harness
+生效**；生效后手机端永远拿到最新页面，无需再手动清缓存。在此之前，手机已缓存的旧页面请清除
+站点数据或开无痕窗口访问一次。
+
 ## 注意
 
 - 本包安装在 profile 的 `node_modules`（由 pnpm 管理，`file:` 依赖指向 `~/.dsh/lan-bridge`）。
