@@ -1,0 +1,33 @@
+{
+  "name": "dsh-lan-bridge",
+  "version": "0.1.0",
+  "description": "LAN bridge for the DeepSeek Harness Web GUI: a loopback-face reverse proxy (HTTP + WebSocket) that lets phones/tablets on the trusted LAN use the FULL /api surface (settings, credentials, agent presets, native dialogs) by rewriting Host/Origin to the loopback authority. Starts and stops automatically with the dsh profile.",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": {
+      "default": "./lib/index.js"
+    },
+    "./proxy": "./lib/proxy.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "bin",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "bin": {
+    "dsh-lan-bridge": "bin/lan-proxy.mjs"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/schemastery": "*"
+  },
+  "license": "MIT"
+}

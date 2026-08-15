@@ -1,0 +1,21 @@
+# dsh-lan-bridge bundle patch: mounts the LAN bridge into a dsh profile.
+#
+# The bridge listens on the LAN face and forwards to this profile's own web
+# server with Host/Origin rewritten to the loopback authority, which unlocks
+# the loopback-pinned /api methods (settings, credentials, agent presets,
+# native dialogs) for devices on the trusted LAN.
+#
+# SECURITY: the bridge is NOT authentication — anyone who can reach
+# listenHost:listenPort gets full agent + configuration control. Trusted LAN
+# only; keep the firewall rule on the private/domain profile; never port-forward.
+#
+# The row auto-starts with the profile and stops when the profile stops.
+# targetPort defaults to the active webServer port when that service exists.
+- insert:
+    - id: lan-bridge
+      name: dsh-lan-bridge
+      config:
+        listenHost: '0.0.0.0'
+        listenPort: 2882
+        targetHost: '127.0.0.1'
+        # targetPort: 2881   # overridden by the live webServer port when present
