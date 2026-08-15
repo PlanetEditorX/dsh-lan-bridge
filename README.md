@@ -78,8 +78,11 @@ node bin\lan-proxy.mjs --port 2882
 默认开启，`false` 关闭，自定义字符串可替换。随 profile 启动即生效，前端更新后依然有效。
 
 早期曾直接在 `resources\host\...\dsh-web-frontend\dist\index.html` 注入补丁（立即生效但会被
-官方更新覆盖），已按用户要求**撤销并还原原文件**。手机端如仍报错，硬刷新（无 Service Worker，
-普通刷新即可）一次。
+官方更新覆盖），已按用户要求**撤销并还原原文件**。
+
+**重启 Harness 后，手机端务必强制刷新一次**：浏览器会把旧页面（无 polyfill 的旧 HTML/JS）
+缓存住，表现为左侧工作区/会话列表为空、无法输入、选工作区后又跳回选择 —— 强制刷新（或无痕
+窗口）即可解决（前端无 Service Worker）。
 
 ## 注意
 
